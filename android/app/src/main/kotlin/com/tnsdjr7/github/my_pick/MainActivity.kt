@@ -1,4 +1,4 @@
-package com.example.my_pick
+package com.tnsdjr7.github.my_pick
 
 import io.flutter.embedding.android.FlutterActivity
 
