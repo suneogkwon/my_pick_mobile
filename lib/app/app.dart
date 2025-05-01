@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:my_pick/app/theme.dart';
 
 class MyPickApp extends StatelessWidget {
   const MyPickApp({super.key});
@@ -6,10 +8,10 @@ class MyPickApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      debugShowCheckedModeBanner: kDebugMode,
+      title: '최애픽',
+      theme: appTheme,
+      darkTheme: appDarkTheme,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
