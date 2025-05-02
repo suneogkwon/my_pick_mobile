@@ -2,8 +2,8 @@
 class Assets {
   Assets._();
 
-  static const String imagesLauncerIcon = 'assets/images/launcher_icon.png';
-  static const String imagesLauncherIcon =
+  static const String imagesLauncherIcon = 'assets/images/launcher_icon.png';
+  static const String imagesLauncherIconMonochrome =
       'assets/images/launcher_icon_monochrome.png';
   static const String splashSplash = 'assets/images/splash/splash.png';
 }
