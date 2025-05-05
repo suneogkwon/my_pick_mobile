@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_pick/app/theme.dart';
-import 'package:my_pick/presentation/screens/home_screen.dart';
+import 'package:my_pick/app/theme/theme.dart';
+import 'package:my_pick/presentation/screens/main_screen.dart';
 
 class MyPickApp extends StatelessWidget {
   const MyPickApp({super.key});
@@ -15,10 +15,10 @@ class MyPickApp extends StatelessWidget {
       theme: appTheme,
       darkTheme: appDarkTheme,
       routerConfig: GoRouter(
-        routes: [GoRoute(path: '/', builder: (context, state) => HomeScreen())],
+        routes: [GoRoute(path: '/', builder: (context, state) => MainScreen())],
       ),
       builder: (context, child) {
-        return Scaffold(body: child);
+        return MediaQuery.withNoTextScaling(child: child!);
       },
     );
   }
