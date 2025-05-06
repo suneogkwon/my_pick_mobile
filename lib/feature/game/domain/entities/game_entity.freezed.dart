@@ -12,33 +12,30 @@ part of 'game_entity.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
-
 /// @nodoc
 mixin _$GameEntity {
 
- String get id; String get title; String get description; List<GameParticipantEntity> get participants;
+ String get id; String get title; String get description; List<GameItemEntity> get items;
 /// Create a copy of GameEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $GameEntityCopyWith<GameEntity> get copyWith => _$GameEntityCopyWithImpl<GameEntity>(this as GameEntity, _$identity);
 
-  /// Serializes this GameEntity to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other.participants, participants));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other.items, items));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,const DeepCollectionEquality().hash(participants));
+int get hashCode => Object.hash(runtimeType,id,title,description,const DeepCollectionEquality().hash(items));
 
 @override
 String toString() {
-  return 'GameEntity(id: $id, title: $title, description: $description, participants: $participants)';
+  return 'GameEntity(id: $id, title: $title, description: $description, items: $items)';
 }
 
 
@@ -49,7 +46,7 @@ abstract mixin class $GameEntityCopyWith<$Res>  {
   factory $GameEntityCopyWith(GameEntity value, $Res Function(GameEntity) _then) = _$GameEntityCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String description, List<GameParticipantEntity> participants
+ String id, String title, String description, List<GameItemEntity> items
 });
 
 
@@ -66,13 +63,13 @@ class _$GameEntityCopyWithImpl<$Res>
 
 /// Create a copy of GameEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? participants = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? items = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,participants: null == participants ? _self.participants : participants // ignore: cast_nullable_to_non_nullable
-as List<GameParticipantEntity>,
+as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<GameItemEntity>,
   ));
 }
 
@@ -80,20 +77,20 @@ as List<GameParticipantEntity>,
 
 
 /// @nodoc
-@JsonSerializable()
 
-class _GameEntity extends GameEntity {
-   _GameEntity({required this.id, required this.title, required this.description, required final  List<GameParticipantEntity> participants}): _participants = participants,super._();
-  factory _GameEntity.fromJson(Map<String, dynamic> json) => _$GameEntityFromJson(json);
+
+class _GameEntity implements GameEntity {
+   _GameEntity({required this.id, required this.title, required this.description, required final  List<GameItemEntity> items}): _items = items;
+  
 
 @override final  String id;
 @override final  String title;
 @override final  String description;
- final  List<GameParticipantEntity> _participants;
-@override List<GameParticipantEntity> get participants {
-  if (_participants is EqualUnmodifiableListView) return _participants;
+ final  List<GameItemEntity> _items;
+@override List<GameItemEntity> get items {
+  if (_items is EqualUnmodifiableListView) return _items;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_participants);
+  return EqualUnmodifiableListView(_items);
 }
 
 
@@ -103,23 +100,20 @@ class _GameEntity extends GameEntity {
 @pragma('vm:prefer-inline')
 _$GameEntityCopyWith<_GameEntity> get copyWith => __$GameEntityCopyWithImpl<_GameEntity>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$GameEntityToJson(this, );
-}
+
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other._participants, _participants));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other._items, _items));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,const DeepCollectionEquality().hash(_participants));
+int get hashCode => Object.hash(runtimeType,id,title,description,const DeepCollectionEquality().hash(_items));
 
 @override
 String toString() {
-  return 'GameEntity(id: $id, title: $title, description: $description, participants: $participants)';
+  return 'GameEntity(id: $id, title: $title, description: $description, items: $items)';
 }
 
 
@@ -130,7 +124,7 @@ abstract mixin class _$GameEntityCopyWith<$Res> implements $GameEntityCopyWith<$
   factory _$GameEntityCopyWith(_GameEntity value, $Res Function(_GameEntity) _then) = __$GameEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String description, List<GameParticipantEntity> participants
+ String id, String title, String description, List<GameItemEntity> items
 });
 
 
@@ -147,13 +141,146 @@ class __$GameEntityCopyWithImpl<$Res>
 
 /// Create a copy of GameEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? participants = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? items = null,}) {
   return _then(_GameEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,participants: null == participants ? _self._participants : participants // ignore: cast_nullable_to_non_nullable
-as List<GameParticipantEntity>,
+as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<GameItemEntity>,
+  ));
+}
+
+
+}
+
+/// @nodoc
+mixin _$GameItemEntity {
+
+ String get id; String get imageUrl; String get description;
+/// Create a copy of GameItemEntity
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GameItemEntityCopyWith<GameItemEntity> get copyWith => _$GameItemEntityCopyWithImpl<GameItemEntity>(this as GameItemEntity, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameItemEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.description, description) || other.description == description));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,id,imageUrl,description);
+
+@override
+String toString() {
+  return 'GameItemEntity(id: $id, imageUrl: $imageUrl, description: $description)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $GameItemEntityCopyWith<$Res>  {
+  factory $GameItemEntityCopyWith(GameItemEntity value, $Res Function(GameItemEntity) _then) = _$GameItemEntityCopyWithImpl;
+@useResult
+$Res call({
+ String id, String imageUrl, String description
+});
+
+
+
+
+}
+/// @nodoc
+class _$GameItemEntityCopyWithImpl<$Res>
+    implements $GameItemEntityCopyWith<$Res> {
+  _$GameItemEntityCopyWithImpl(this._self, this._then);
+
+  final GameItemEntity _self;
+  final $Res Function(GameItemEntity) _then;
+
+/// Create a copy of GameItemEntity
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? imageUrl = null,Object? description = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// @nodoc
+
+
+class _GameItemEntity implements GameItemEntity {
+  const _GameItemEntity({required this.id, required this.imageUrl, required this.description});
+  
+
+@override final  String id;
+@override final  String imageUrl;
+@override final  String description;
+
+/// Create a copy of GameItemEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GameItemEntityCopyWith<_GameItemEntity> get copyWith => __$GameItemEntityCopyWithImpl<_GameItemEntity>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameItemEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.description, description) || other.description == description));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,id,imageUrl,description);
+
+@override
+String toString() {
+  return 'GameItemEntity(id: $id, imageUrl: $imageUrl, description: $description)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GameItemEntityCopyWith<$Res> implements $GameItemEntityCopyWith<$Res> {
+  factory _$GameItemEntityCopyWith(_GameItemEntity value, $Res Function(_GameItemEntity) _then) = __$GameItemEntityCopyWithImpl;
+@override @useResult
+$Res call({
+ String id, String imageUrl, String description
+});
+
+
+
+
+}
+/// @nodoc
+class __$GameItemEntityCopyWithImpl<$Res>
+    implements _$GameItemEntityCopyWith<$Res> {
+  __$GameItemEntityCopyWithImpl(this._self, this._then);
+
+  final _GameItemEntity _self;
+  final $Res Function(_GameItemEntity) _then;
+
+/// Create a copy of GameItemEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? imageUrl = null,Object? description = null,}) {
+  return _then(_GameItemEntity(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

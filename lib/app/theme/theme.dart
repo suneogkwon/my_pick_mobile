@@ -15,8 +15,9 @@ ThemeData get appTheme {
       backgroundColor: Colors.white,
       scrolledUnderElevation: 0,
       titleTextStyle: GoogleFonts.ibmPlexSansKr(
-        color: colors.primary100,
-        fontSize: 24,
+        fontSize: 20,
+        color: Colors.black87,
+        fontWeight: FontWeight.w500,
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -33,19 +34,31 @@ ThemeData get appTheme {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: colors.primary80),
+        borderSide: BorderSide(color: Colors.grey.shade500),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: colors.primary100),
+        borderSide: BorderSide(color: baseTheme.colorScheme.error),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: colors.primary100),
+        borderSide: BorderSide(color: baseTheme.colorScheme.error),
       ),
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(color: colors.primary30),
+      ),
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        backgroundColor: colors.primary80,
+        foregroundColor: Colors.white,
+        minimumSize: Size(0, 48),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        textStyle: GoogleFonts.ibmPlexSansKr(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     ),
     iconButtonTheme: IconButtonThemeData(

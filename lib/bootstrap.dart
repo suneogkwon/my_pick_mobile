@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,11 +23,6 @@ Future<void> bootstrap(Widget Function() builder) async {
   await GoogleFonts.pendingFonts([GoogleFonts.ibmPlexSansKrTextTheme()]);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  final user = await FirebaseAuth.instance.userChanges().first;
-  if (user == null) {
-    await FirebaseAuth.instance.signInAnonymously();
-  }
 
   runApp(ProviderScope(observers: [ProviderLogger()], child: builder()));
 }

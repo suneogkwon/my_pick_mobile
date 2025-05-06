@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:my_pick/app/theme/extensions.dart';
+import 'package:my_pick/feature/game/domain/entities/game_entity.dart';
+import 'package:my_pick/feature/game/domain/use_cases/get_games_use_case.dart';
 import 'package:my_pick/presentation/util/padding_util.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'main_screen.g.dart';
+part 'states/game_list_provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -53,25 +61,51 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
               Gap(12),
-              Expanded(
-                child: ListView.separated(
-                  itemCount: 100,
-                  itemBuilder: (context, index) => GameCard(index: index),
-                  separatorBuilder: (context, index) => Gap(16),
-                ),
-              ),
+              Expanded(child: _buildGameListView()),
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          foregroundColor: AppColors.of(context).primary100,
+          shape: CircleBorder(),
+          onPressed: () {
+            GoRouter.of(context).push('/create');
+          },
+          child: Icon(Icons.create_rounded),
+        ),
       ),
+    );
+  }
+
+  Widget _buildGameListView() {
+    return Consumer(
+      builder: (context, ref, child) {
+        final gameListAsync = ref.watch(gameListProvider);
+
+        return switch (gameListAsync) {
+          AsyncError(:final error, :final stackTrace) => Center(
+            child: Text('Error: $error'),
+          ),
+          AsyncData(value: final games) => ListView.separated(
+            itemCount: games.length,
+            itemBuilder: (context, index) {
+              final game = games[index];
+              return GameCard(index: index, game: game);
+            },
+            separatorBuilder: (context, index) => Gap(16),
+          ),
+          _ => Center(child: CircularProgressIndicator()),
+        };
+      },
     );
   }
 }
 
 class GameCard extends StatelessWidget {
-  const GameCard({super.key, required this.index});
+  const GameCard({super.key, required this.index, required this.game});
 
   final int index;
+  final GameEntity game;
 
   @override
   Widget build(BuildContext context) {
@@ -87,13 +121,13 @@ class GameCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Image.network(
-                        'https://picsum.photos/200/300?random=$index',
+                        game.items[0].imageUrl,
                         fit: BoxFit.cover,
                       ),
                     ),
                     Expanded(
                       child: Image.network(
-                        'https://picsum.photos/200/300?random=${index + 1}',
+                        game.items[1].imageUrl,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -109,14 +143,14 @@ class GameCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '게임 제목 $index',
+                  game.title,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Gap(4),
                 Text(
-                  '게임 설명 $index',
+                  game.description,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(color: Colors.grey.shade700),
