@@ -63,6 +63,7 @@ ThemeData get appTheme {
     ),
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
+        padding: EdgeInsets.zero,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
     ),
