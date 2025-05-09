@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:my_pick/feature/game/domain/entities/game_entity.dart';
 import 'package:my_pick/feature/game/domain/entities/game_form_entity.dart';
 
 part 'game_firebase_model.freezed.dart';
@@ -33,23 +32,6 @@ class GameFirebaseModel with _$GameFirebaseModel {
       id: entity.id,
       title: entity.title,
       description: entity.description,
-    );
-  }
-
-  factory GameFirebaseModel.fromEntity(GameEntity entity) {
-    return GameFirebaseModel(
-      id: entity.id,
-      title: entity.title,
-      description: entity.description,
-    );
-  }
-
-  GameEntity toEntity() {
-    return GameEntity(
-      id: id!,
-      title: title!,
-      description: description!,
-      items: [],
     );
   }
 
@@ -100,30 +82,6 @@ class GameItemFirebaseModel with _$GameItemFirebaseModel {
   final Timestamp? createdAt;
   @override
   final Timestamp? updatedAt;
-
-  factory GameItemFirebaseModel.fromFormEntity(GameItemFormEntity entity) {
-    return GameItemFirebaseModel(
-      id: entity.id,
-      imageUrl: entity.imageUrl,
-      description: entity.description,
-    );
-  }
-
-  factory GameItemFirebaseModel.fromEntity(GameItemEntity entity) {
-    return GameItemFirebaseModel(
-      id: entity.id,
-      imageUrl: entity.imageUrl,
-      description: entity.description,
-    );
-  }
-
-  GameItemEntity toEntity() {
-    return GameItemEntity(
-      id: id!,
-      imageUrl: imageUrl!,
-      description: description!,
-    );
-  }
 
   factory GameItemFirebaseModel.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,

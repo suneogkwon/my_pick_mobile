@@ -38,6 +38,8 @@ dependencies:
   flutter_animate: ^4.5.0
   visibility_detector: ^0.4.0+2
   infinite_scroll_pagination: ^5.0.0
+  cached_network_image: ^3.4.1
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +63,8 @@ flutter:
     - assets/
     - assets/images/
     - assets/images/splash/
+    - assets/l10n/
+    - assets/images/icons/
 
 flutter_assets_generator:
   # Optional. Sets the directory of generated localization files. Provided value should be a valid path on lib dir. Default: generated

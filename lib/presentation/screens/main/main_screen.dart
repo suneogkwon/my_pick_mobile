@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:my_pick/app/theme/extensions.dart';
+import 'package:my_pick/core/constants/assets.dart';
 import 'package:my_pick/core/constants/list_view_mode.dart';
 import 'package:my_pick/feature/game/domain/entities/game_entity.dart';
 import 'package:my_pick/feature/game/domain/use_cases/get_games_use_case.dart';
@@ -55,12 +57,17 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          foregroundColor: AppColors.of(context).primary100,
           shape: CircleBorder(),
           onPressed: () {
             GoRouter.of(context).push('/create');
           },
-          child: Icon(Icons.create_rounded),
+          child: SvgPicture.asset(
+            Assets.iconsFileEdit,
+            colorFilter: ColorFilter.mode(
+              AppColors.of(context).primary100,
+              BlendMode.srcIn,
+            ),
+          ),
         ),
       ),
     );

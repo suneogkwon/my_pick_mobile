@@ -28,26 +28,31 @@ class GameFirebaseDataSource {
     final itemsCollection = _getGameItemsCollection(gameDocument.id);
 
     await _firestore.runTransaction((transaction) async {
-      final gameData = GameFirebaseModel.fromFormEntity(gameForm).copyWith(
+      final gameData = GameFirebaseModel(
         id: gameDocument.id,
+        title: gameForm.title,
+        description: gameForm.description,
         createdAt: Timestamp.now(),
         updatedAt: Timestamp.now(),
       );
 
       transaction.set(gameDocument, gameData);
 
-      if (gameForm.items != null) {
-        for (final item in gameForm.items!) {
-          final itemDocument = itemsCollection.doc();
-          transaction.set(
-            itemDocument,
-            GameItemFirebaseModel.fromFormEntity(item).copyWith(
-              id: itemDocument.id,
-              createdAt: Timestamp.now(),
-              updatedAt: Timestamp.now(),
-            ),
-          );
-        }
+      for (final item in gameForm.items!) {
+        final itemDocument = itemsCollection.doc();
+
+        // TODO : storage에 이미지 저장
+
+        transaction.set(
+          itemDocument,
+          GameItemFirebaseModel(
+            id: itemDocument.id,
+            imageUrl: 'item.imageUrl',
+            description: item.description,
+            createdAt: Timestamp.now(),
+            updatedAt: Timestamp.now(),
+          ),
+        );
       }
     });
 
@@ -109,9 +114,12 @@ class GameFirebaseDataSource {
       if (gameForm.items != null) {
         for (final item in gameForm.items!) {
           final itemDocument = itemsCollection.doc(item.id);
-          final itemData = GameItemFirebaseModel.fromFormEntity(
-            item,
-          ).copyWith(updatedAt: Timestamp.now());
+          final itemData = GameItemFirebaseModel(
+            id: item.id,
+            imageUrl: 'item.imageUrl',
+            description: item.description,
+            updatedAt: Timestamp.now(),
+          );
 
           transaction.update(itemDocument, itemData.toFirestore());
         }

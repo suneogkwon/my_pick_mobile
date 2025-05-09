@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'game_form_entity.freezed.dart';
@@ -16,7 +18,7 @@ abstract class GameFormEntity with _$GameFormEntity {
 abstract class GameItemFormEntity with _$GameItemFormEntity {
   const factory GameItemFormEntity({
     String? id,
-    String? imageUrl,
+    File? image,
     String? description,
   }) = _GameItemFormEntity;
 }

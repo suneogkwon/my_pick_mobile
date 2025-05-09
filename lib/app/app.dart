@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_pick/app/theme/theme.dart';
 import 'package:my_pick/presentation/screens/create_game/create_game_screen.dart';
-import 'package:my_pick/presentation/screens/main/main_screen.dart';
 
 class MyPickApp extends StatelessWidget {
   const MyPickApp({super.key});
@@ -19,7 +18,7 @@ class MyPickApp extends StatelessWidget {
         routes: [
           GoRoute(
             path: '/',
-            builder: (context, state) => MainScreen(),
+            builder: (context, state) => CreateGameScreen(),
             routes: [
               GoRoute(
                 path: 'create',

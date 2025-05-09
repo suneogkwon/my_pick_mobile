@@ -2,6 +2,9 @@
 class Assets {
   Assets._();
 
+  static const String iconsFileEdit = 'assets/images/icons/file-edit.svg';
+  static const String iconsPlus = 'assets/images/icons/plus.svg';
+  static const String iconsTrash = 'assets/images/icons/trash.svg';
   static const String imagesLauncherIcon = 'assets/images/launcher_icon.png';
   static const String imagesLauncherIconMonochrome =
       'assets/images/launcher_icon_monochrome.png';

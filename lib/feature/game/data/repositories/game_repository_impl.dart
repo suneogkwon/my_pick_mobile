@@ -16,14 +16,26 @@ class GameRepositoryImpl implements GameRepository {
   @override
   Future<List<GameEntity>> getGames({int? limit, String? pageKey}) async {
     final gamesData = await firebaseDataSource.getGames();
-    final games = gamesData.map((e) => e.toEntity()).toList();
+    final games = <GameEntity>[];
 
-    for (int i = 0; i < games.length; i++) {
-      final items = await firebaseDataSource.getGameItems(games[i].id);
-
-      games[i] = games[i].copyWith(
-        items: items.map((e) => e.toEntity()).toList(),
+    for (int i = 0; i < gamesData.length; i++) {
+      final data = gamesData[i];
+      final items = await firebaseDataSource.getGameItems(data.id!);
+      final game = GameEntity(
+        id: data.id!,
+        title: data.title!,
+        description: data.description!,
+        items: [
+          for (final item in items)
+            GameItemEntity(
+              id: item.id!,
+              imageUrl: item.imageUrl!,
+              description: item.description!,
+            ),
+        ],
       );
+
+      games.add(game);
     }
 
     return games;

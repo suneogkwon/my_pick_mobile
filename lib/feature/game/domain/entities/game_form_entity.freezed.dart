@@ -159,7 +159,7 @@ as List<GameItemFormEntity>?,
 /// @nodoc
 mixin _$GameItemFormEntity {
 
- String? get id; String? get imageUrl; String? get description;
+ String? get id; File? get image; String? get description;
 /// Create a copy of GameItemFormEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -170,16 +170,16 @@ $GameItemFormEntityCopyWith<GameItemFormEntity> get copyWith => _$GameItemFormEn
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameItemFormEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.description, description) || other.description == description));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameItemFormEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.image, image) || other.image == image)&&(identical(other.description, description) || other.description == description));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,imageUrl,description);
+int get hashCode => Object.hash(runtimeType,id,image,description);
 
 @override
 String toString() {
-  return 'GameItemFormEntity(id: $id, imageUrl: $imageUrl, description: $description)';
+  return 'GameItemFormEntity(id: $id, image: $image, description: $description)';
 }
 
 
@@ -190,7 +190,7 @@ abstract mixin class $GameItemFormEntityCopyWith<$Res>  {
   factory $GameItemFormEntityCopyWith(GameItemFormEntity value, $Res Function(GameItemFormEntity) _then) = _$GameItemFormEntityCopyWithImpl;
 @useResult
 $Res call({
- String? id, String? imageUrl, String? description
+ String? id, File? image, String? description
 });
 
 
@@ -207,11 +207,11 @@ class _$GameItemFormEntityCopyWithImpl<$Res>
 
 /// Create a copy of GameItemFormEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? imageUrl = freezed,Object? description = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? image = freezed,Object? description = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as File?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -223,11 +223,11 @@ as String?,
 
 
 class _GameItemFormEntity implements GameItemFormEntity {
-  const _GameItemFormEntity({this.id, this.imageUrl, this.description});
+  const _GameItemFormEntity({this.id, this.image, this.description});
   
 
 @override final  String? id;
-@override final  String? imageUrl;
+@override final  File? image;
 @override final  String? description;
 
 /// Create a copy of GameItemFormEntity
@@ -240,16 +240,16 @@ _$GameItemFormEntityCopyWith<_GameItemFormEntity> get copyWith => __$GameItemFor
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameItemFormEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.description, description) || other.description == description));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameItemFormEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.image, image) || other.image == image)&&(identical(other.description, description) || other.description == description));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,imageUrl,description);
+int get hashCode => Object.hash(runtimeType,id,image,description);
 
 @override
 String toString() {
-  return 'GameItemFormEntity(id: $id, imageUrl: $imageUrl, description: $description)';
+  return 'GameItemFormEntity(id: $id, image: $image, description: $description)';
 }
 
 
@@ -260,7 +260,7 @@ abstract mixin class _$GameItemFormEntityCopyWith<$Res> implements $GameItemForm
   factory _$GameItemFormEntityCopyWith(_GameItemFormEntity value, $Res Function(_GameItemFormEntity) _then) = __$GameItemFormEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String? imageUrl, String? description
+ String? id, File? image, String? description
 });
 
 
@@ -277,11 +277,11 @@ class __$GameItemFormEntityCopyWithImpl<$Res>
 
 /// Create a copy of GameItemFormEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? imageUrl = freezed,Object? description = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? image = freezed,Object? description = freezed,}) {
   return _then(_GameItemFormEntity(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as File?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
