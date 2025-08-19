@@ -2,7 +2,7 @@ part of '../main_screen.dart';
 
 @riverpod
 Future<List<GameEntity>> _gameList(Ref ref) async {
-  return ref.read(getGamesUseCaseProvider.future);
+  return ref.watch(getGamesUseCaseProvider.future);
 }
 
 @riverpod

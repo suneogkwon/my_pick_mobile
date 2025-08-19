@@ -4,27 +4,25 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProviderLogger extends ProviderObserver {
   @override
+  void didDisposeProvider(ProviderObserverContext context) {
+    log('${context.provider.name ?? context.provider.runtimeType} dispose');
+  }
+
+  @override
+  void didAddProvider(ProviderObserverContext context, Object? value) {
+    log('${context.provider.name ?? context.provider.runtimeType} add');
+  }
+
+  @override
   void didUpdateProvider(
-    ProviderBase provider,
+    ProviderObserverContext context,
     Object? previousValue,
     Object? newValue,
-    ProviderContainer container,
   ) {
     log(''' 
 {
-  "provider": "${provider.name ?? provider.runtimeType}",
+  "provider": "${context.provider.name ?? context.provider.runtimeType}",
   "newValue": "$newValue"
 }''');
-  }
-
-  @override
-  void didDisposeProvider(ProviderBase provider, ProviderContainer container) {
-    log('${provider.name ?? provider.runtimeType} dispose');
-  }
-
-  @override
-  void didAddProvider(ProviderBase<Object?> provider, Object? value,
-      ProviderContainer container) {
-    log('${provider.name ?? provider.runtimeType} add');
   }
 }

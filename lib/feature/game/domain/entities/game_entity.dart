@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'game_entity.freezed.dart';
 
 @freezed
-abstract class GameEntity with _$GameEntity {
+sealed class GameEntity with _$GameEntity {
   factory GameEntity({
     required String id,
     required String title,
@@ -13,7 +13,7 @@ abstract class GameEntity with _$GameEntity {
 }
 
 @freezed
-abstract class GameItemEntity with _$GameItemEntity {
+sealed class GameItemEntity with _$GameItemEntity {
   const factory GameItemEntity({
     required String id,
     required String imageUrl,
